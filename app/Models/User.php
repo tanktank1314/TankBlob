@@ -29,6 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
     public function getavatar($size = '100')
     {
         if ($this->attributes['avatar']) {
@@ -37,5 +42,11 @@ class User extends Authenticatable
             $hash = md5(strtolower(trim($this->attributes['email'])));
             return "http://s.gravatar.com/avatar/$hash?s=$size";
         }
+    }
+
+    public function statuses_order_desc()
+    {
+        return $this->statuses()
+                    ->orderBy('created_at','desc');
     }
 }
