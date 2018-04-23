@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/','App\AppController@home');
+Route::get('/help','App\AppController@help');
+Route::get('/about','App\AppController@about');
