@@ -14,6 +14,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/','App\AppController@home');
-Route::get('/help','App\AppController@help');
-Route::get('/about','App\AppController@about');
+Route::get('/','App\AppController@home')->name('app.home');
+Route::get('/help','App\AppController@help')->name('app.help');
+Route::get('/about','App\AppController@about')->name('app.about');
+Route::resource('/users','Users\UsersController');
