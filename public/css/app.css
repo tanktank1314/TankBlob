@@ -8406,6 +8406,23 @@ p {
   background-color: #3c3e42;
 }
 
+.navbar-inverse .dropdown-menu {
+  padding: 0px;
+}
+
+.navbar-inverse .dropdown-menu li a {
+  border-bottom: 1px solid #d8d8d8;
+  line-height: 2.4;
+}
+
+.navbar-inverse .dropdown-menu li a .glyphicon {
+  margin-right: 8px;
+}
+
+.navbar-inverse .dropdown-menu li button {
+  margin: 5px 0px;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -8419,6 +8436,14 @@ p {
 
 #logo:hover {
   color: #fff;
+}
+
+#logout {
+  cursor: default;
+}
+
+#logout:hover {
+  background-color: transparent;
 }
 
 /* footer */

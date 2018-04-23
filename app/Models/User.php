@@ -29,9 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function gravatar($size = '100')
+    public function getavatar($size = '100')
     {
-        $hash = md5(strtolower(trim($this->attributes['email'])));
-        return "http://s.gravatar.com/avatar/$hash?s=$size";
+        if ($this->attributes['avatar']) {
+            return $this->attributes['avatar'];
+        } else {
+            $hash = md5(strtolower(trim($this->attributes['email'])));
+            return "http://s.gravatar.com/avatar/$hash?s=$size";
+        }
     }
 }

@@ -52,6 +52,19 @@ p {
 
 .navbar-inverse {
   background-color: $navbar-color;
+  .dropdown-menu {
+        padding: 0px;
+        li a {
+            border-bottom: 1px solid #d8d8d8;
+            line-height: 2.4;
+            .glyphicon {
+                margin-right: 8px;
+            }
+        }
+        li button {
+            margin: 5px 0px;
+        }
+    }
 }
 
 #logo {
@@ -65,6 +78,13 @@ p {
   font-weight: bold;
   &:hover {
     color: #fff;
+  }
+}
+
+#logout {
+  cursor: default;
+  &:hover {
+    background-color: transparent;
   }
 }
 
