@@ -29,7 +29,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('users.index') }}">
                                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                                         用户列表
                                     </a>
@@ -37,7 +37,7 @@
 
                                 <li>
                                     <a id="logout" href="#">
-                                        <form action="{{ route('login.destroy',Auth::user()->id) }}" method="POST">
+                                        <form action="{{ route('logout',Auth::user()->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-block btn-danger" type="submit" name="button">
@@ -50,7 +50,7 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{ route('login.create') }}">登录</a></li>
+                        <li><a href="{{ route('login') }}">登录</a></li>
                         <li><a href="{{ route('users.create') }}">注册</a></li>
                     @endif
                 </ul>

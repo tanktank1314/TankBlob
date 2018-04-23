@@ -8,6 +8,11 @@ use Auth;
 
 class LoginController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('guest',['only' => ['create']]);
+    }
+
     public function create()
     {
         return view('login.create');
@@ -33,6 +38,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         session()->flash('success','退出成功！');
-        return redirect()->route('login.create');
+        return redirect()->route('login');
     }
 }

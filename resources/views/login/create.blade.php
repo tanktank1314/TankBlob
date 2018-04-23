@@ -9,7 +9,7 @@
             <div class="panel-body">
                 @include('layouts._errors')
 
-                <form method="POST" action="{{ route('login.store') }}">
+                <form method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group">
