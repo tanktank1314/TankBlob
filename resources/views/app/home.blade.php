@@ -14,6 +14,9 @@
                 <section class="user_info">
                     @include('users._user_info',['user' => Auth::user()])
                 </section>
+                <section class="stats">
+                    @include('users._user_follow',['user' => Auth::user()])
+                </section>
             </aside>
         </div>
     @else

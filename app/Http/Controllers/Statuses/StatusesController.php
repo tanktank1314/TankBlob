@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Statuses;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Status;
+use Auth;
 
 class StatusesController extends Controller
 {

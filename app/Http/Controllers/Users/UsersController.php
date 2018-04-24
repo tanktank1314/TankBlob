@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Handlers\ImageUploadHandler;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -95,4 +96,17 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(30);
+        $title = '关注的人';
+        return view('users.follow',compact('users','title'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->paginate(30);
+        $title = '粉丝';
+        return view('users.follow',compact('users','title'));
+    }
 }
