@@ -49,12 +49,10 @@ class UsersController extends Controller
     {
         $view = 'confirms.email';
         $data = compact('user');
-        $from = $user->email;
-        $name = 'Tank';
         $to = $user->email;
         $subject = '感谢注册 Tank博客！请确认你的邮箱。';
-        Mail::send($view,$data,function($message) use($from,$name,$to,$subject) {
-            $message->from($from,$name)->to($to)->subject($subject);
+        Mail::send($view,$data,function($message) use($to,$subject) {
+            $message->to($to)->subject($subject);
         });
     }
 
@@ -88,7 +86,7 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:50',
-            'password' => 'required|confirmed|min:6',
+            // 'password' => 'required|confirmed|min:6',
             'avatar' => 'mimes:jpeg,bmp,png,gif,jpg|dimensions:min_width=200,min_height=200',
         ]);
 
@@ -96,7 +94,7 @@ class UsersController extends Controller
 
         $data = $request->all();
 
-        $data['password'] = bcrypt($request['password']);
+        // $data['password'] = bcrypt($request['password']);
 
         if ($request->avatar) {
             $result = $uploader->save($request->avatar,'avatars',$user->id);

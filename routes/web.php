@@ -27,3 +27,7 @@ Route::get('/users/{user}/followers','Users\UsersController@followers')->name('u
 Route::post('/users/followers/{user}','Users\Followers\FollowersController@store')->name('followers.store');
 Route::delete('/users/followers/{user}','Users\Followers\FollowersController@destroy')->name('followers.destroy');
 Route::get('/login/confirm/{token}','Users\UsersController@confirmEmail')->name('confirm_email');
+Route::get('/password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/password/email','Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
