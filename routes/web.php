@@ -26,3 +26,4 @@ Route::get('/users/{user}/followings','Users\UsersController@followings')->name(
 Route::get('/users/{user}/followers','Users\UsersController@followers')->name('users.followers');
 Route::post('/users/followers/{user}','Users\Followers\FollowersController@store')->name('followers.store');
 Route::delete('/users/followers/{user}','Users\Followers\FollowersController@destroy')->name('followers.destroy');
+Route::get('/login/confirm/{token}','Users\UsersController@confirmEmail')->name('confirm_email');

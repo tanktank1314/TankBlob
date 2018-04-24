@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Handlers\ImageUploadHandler;
 use Auth;
+use Mail;
 
 class UsersController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth',['except' => ['create','store','show','index']]);
+        $this->middleware('auth',['except' => ['create','store','show','index','confirmEmail']]);
         $this->middleware('guest',['only' => ['create']]);
     }
 
@@ -35,8 +36,37 @@ class UsersController extends Controller
             'password' =>bcrypt($request->password),
         ]);
 
+        $this->sendEmailConfirmationTo($user);
+        session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
+        return redirect()->route('app.home');
+        // Auth::login($user);
+        // session()->flash('success','注册成功！');
+        // return redirect()->route('users.show',[$user->id]);
+
+    }
+
+    protected function sendEmailConfirmationTo($user)
+    {
+        $view = 'confirms.email';
+        $data = compact('user');
+        $from = $user->email;
+        $name = 'Tank';
+        $to = $user->email;
+        $subject = '感谢注册 Tank博客！请确认你的邮箱。';
+        Mail::send($view,$data,function($message) use($from,$name,$to,$subject) {
+            $message->from($from,$name)->to($to)->subject($subject);
+        });
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token',$token)->firstOrFail();
+        $user->activated = true;
+        $user->activation_token = null;
+        $user->save();
+
         Auth::login($user);
-        session()->flash('success','注册成功！');
+        session()->flash('success','激活成功！');
         return redirect()->route('users.show',[$user->id]);
     }
 
